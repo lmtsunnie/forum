@@ -54,12 +54,12 @@ CREATE TABLE `image` (
 -- Records of image
 -- ----------------------------
 
-INSERT INTO `image` VALUES ('1', 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3794862538,3454923183&fm=27&gp=0.jpg');
-INSERT INTO `image` VALUES ('2', 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2390205471,3993334695&fm=27&gp=0.jpg');
-INSERT INTO `image` VALUES ('3', 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=4250899614,2225768721&fm=27&gp=0.jpg');
-INSERT INTO `image` VALUES ('4', 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=431996122,3492298550&fm=27&gp=0.jpg');
-INSERT INTO `image` VALUES ('5', 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2541759953,4097407455&fm=27&gp=0.jpg');
-INSERT INTO `image` VALUES ('6', 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1333245617,4026824155&fm=27&gp=0.jpg');
+INSERT INTO `image` VALUES ('1', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517159234114&di=23810cdc0cc7ac96c56ad206103faec3&imgtype=0&src=http%3A%2F%2Fwww.bit.edu.cn%2Fimages%2Fcontent%2F2013-12%2F20131230104845033939.jpg');
+INSERT INTO `image` VALUES ('2', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517159090114&di=376e5ed66be7d3095424b814d5600ca0&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3D6a5a10084b34970a537e186cfda3bbbd%2F314e251f95cad1c8650f2400753e6709c93d5165.jpg');
+INSERT INTO `image` VALUES ('3', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517159077748&di=3ae5eb59cf9fb557dc7f63dccffcfff7&imgtype=0&src=http%3A%2F%2Fwww.bit.edu.cn%2Foldbit%2Fimages%2Fcontent%2F2013-12%2F20131225114236987033.jpg');
+INSERT INTO `image` VALUES ('4', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517754239&di=df952b679b34f7d41cdccdc6a307bfba&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.bit.edu.cn%2Fimages%2Fcontent%2F2013-12%2F20131210104110465521.jpg');
+INSERT INTO `image` VALUES ('5', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517754266&di=87b9b0b2917374e7ac9f7ad99485c130&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.bit.edu.cn%2Fimages%2Fcontent%2F2013-12%2F20131210101211330192.jpg');
+INSERT INTO `image` VALUES ('6', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517159547273&di=38efcab826b6cf1cf0f782123fc05b11&imgtype=0&src=http%3A%2F%2Fwww.bit.edu.cn%2Fimages%2Fcontent%2F2013-12%2F20131231133137825487.jpg');
 
 -- ----------------------------
 -- Table structure for `info`

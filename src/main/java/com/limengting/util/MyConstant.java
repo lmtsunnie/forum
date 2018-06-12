@@ -12,7 +12,7 @@ public class MyConstant {
 
     //域名
     
-    public static final String DOMAIN_NAME = "http://192.168.1.105:8080/";
+    public static final String DOMAIN_NAME = "http://192.168.1.104:8080/"; // change to your own IP
 
     //三种操作
     public static final int OPERATION_CLICK_LIKE = 1;

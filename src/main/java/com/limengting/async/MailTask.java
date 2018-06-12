@@ -37,7 +37,9 @@ public class MailTask implements Runnable {
                 if(operation==1){
                     sb.append("<a href="+MyConstant.DOMAIN_NAME+"activate.do?code=");
                     sb.append(code);
-                    sb.append(">点击激活</a></body>");
+                    sb.append("这是一封来自北理人的激活邮件，欢迎使用北理人论坛。");
+                    sb.append(">点击激活</a>");
+                    sb.append("</body>");
                 }else{
                     sb.append("是否将您的密码修改为:");
                     sb.append(code.substring(0,8));
