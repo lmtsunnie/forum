@@ -12,6 +12,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.Transaction;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -67,6 +68,7 @@ public class UserService {
         info.setRequestUrl(requestURL.toString());
         info.setContextPath(contextPath);
         info.setRemoteAddr(remoteAddr);
+        info.setAccess_time(new Date());
         userMapper.insertInfo(info);
     }
 

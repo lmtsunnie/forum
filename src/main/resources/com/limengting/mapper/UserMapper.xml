@@ -12,8 +12,6 @@
         values(#{email},#{password},#{actived},#{activateCode},#{joinTime},#{username},#{headUrl})
     </insert>
 
-
-
     <select id="selectActived" resultType="int">
         select actived from user where email=#{email}
     </select>
@@ -47,7 +45,7 @@
     </update>
 
     <insert id="insertInfo">
-        insert into info values(null,#{requestUrl},#{contextPath},#{remoteAddr},null)
+        insert into info values(null,#{requestUrl},#{contextPath},#{remoteAddr},#{access_time})
     </insert>
 
     <select id="listUserByTime" resultType="com.limengting.model.User">
