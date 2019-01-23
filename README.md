@@ -1,6 +1,9 @@
 
 
-该项目开发IDE为IntelliJ IDEA，通过Maven构建，后台采用Spring、SpringMVC、MyBatis，数据库采用MySQL、Redis，前端用到jQuery。包含登录、注册、发送激活邮件、修改个人信息、发帖评论等功能
+该项目是一个"北理人"校内论坛项目，包含登录、注册、发送激活邮件、修改个人信息、发帖评论等功能。
+
+技术栈：  
+构建工具：maven/框架：SpringMVC/持久层：MyBatis/数据库：MySQL、Redis/前端：jQuery。
 
 系统：macOS Mojave 10.14.2  
 IDE: IntelliJ idea
