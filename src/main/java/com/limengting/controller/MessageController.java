@@ -20,12 +20,18 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
-    //去消息页面
+    /**
+     * 【消息】同一个人点赞多次点赞数+1但是会发多条消息，而且无法取消赞???
+     *
+     * @param model
+     * @param session
+     * @return
+     */
     @RequestMapping("/toMessage.do")
     public String toMessage(Model model, HttpSession session) {
         Integer sessionUid = (Integer) session.getAttribute("uid");
-        Map<String,List<Message>> map = messageService.listMessageByUid(sessionUid);
-        model.addAttribute("map",map);
+        Map<String, List<Message>> map = messageService.listMessageByUid(sessionUid);
+        model.addAttribute("map", map);
         System.out.println(map);
         return "message";
     }

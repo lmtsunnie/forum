@@ -29,30 +29,30 @@ public class LoginService {
     private TaskExecutor taskExecutor;
 
     //注册
-    public String register(User user,String repassword) {
+    public String register(User user, String repassword) {
 
         //校验邮箱格式
         Pattern p = Pattern.compile("^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\\.[a-zA-Z0-9_-]{2,3}){1,2})$");
         Matcher m = p.matcher(user.getEmail());
-        if(!m.matches()){
+        if (!m.matches()) {
             return "邮箱格式有问题啊~";
         }
 
         //校验密码长度
         p = Pattern.compile("^\\w{6,20}$");
         m = p.matcher(user.getPassword());
-        if(!m.matches()){
+        if (!m.matches()) {
             return "密码长度要在6到20之间~";
         }
 
         //检查密码
-        if(!user.getPassword().equals(repassword)){
+        if (!user.getPassword().equals(repassword)) {
             return "两次密码输入不一致~";
         }
 
         //检查邮箱是否被注册
         int emailCount = userMapper.selectEmailCount(user.getEmail());
-        if(emailCount>0){
+        if (emailCount > 0) {
             return "该邮箱已被注册~";
         }
 
@@ -61,11 +61,11 @@ public class LoginService {
         String activateCode = MyUtil.createActivateCode();
         user.setActivateCode(activateCode);
         user.setJoinTime(MyUtil.formatDate(new Date()));
-        user.setUsername("DF"+new Random().nextInt(10000)+"号");
-        user.setHeadUrl(MyConstant.QINIU_IMAGE_URL +"head.jpg");
+        user.setUsername("婷婷" + new Random().nextInt(10000) + "号");
+        user.setHeadUrl(MyConstant.QINIU_IMAGE_URL + "figure12.jpg");
 
         //发送邮件
-        taskExecutor.execute(new MailTask(activateCode,user.getEmail(),javaMailSender,1));
+        taskExecutor.execute(new MailTask(activateCode, user.getEmail(), javaMailSender, 1));
 
         //向数据库插入记录
         userMapper.insertUser(user);
@@ -74,30 +74,29 @@ public class LoginService {
     }
 
 
-
     //登录
-    public Map<String,Object> login(User user) {
+    public Map<String, Object> login(User user) {
 
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         Integer uid = userMapper.selectUidByEmailAndPassword(user);
-        if(uid==null){
-            map.put("status","no");
-            map.put("error","用户名或密码错误~");
+        if (uid == null) {
+            map.put("status", "no");
+            map.put("error", "用户名或密码错误~");
             return map;
         }
 
         int checkActived = userMapper.selectActived(user);
-        if(checkActived==0){
-            map.put("status","no");
-            map.put("error","您还没有激活账户哦，请前往邮箱激活~");
+        if (checkActived == 0) {
+            map.put("status", "no");
+            map.put("error", "您还没有激活账户哦，请前往邮箱激活~");
             return map;
         }
 
         String headUrl = userMapper.selectHeadUrl(uid);
 
-        map.put("status","yes");
-        map.put("uid",uid);
-        map.put("headUrl",headUrl);
+        map.put("status", "yes");
+        map.put("uid", uid);
+        map.put("headUrl", headUrl);
         return map;
     }
 

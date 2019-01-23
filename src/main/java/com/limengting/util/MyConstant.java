@@ -2,7 +2,7 @@ package com.limengting.util;
 
 
 public class MyConstant {
-    public static final String QINIU_IMAGE_URL = "http://od6v5lenq.bkt.clouddn.com/";
+    public static final String QINIU_IMAGE_URL = "http://qiniu.limengting.site/";
     public static final String QINIU_ACCESS_KEY = "OO_3P93p4-feCji_Vd3SQPA4FtrUpjw8bL1jXhF8";
     public static final String QINIU_SECRET_KEY = "AXdJXoYtGL42K_w7UzaNxhrNU55K_XEkv-Zgte1w";
     public static final String QINIU_BUCKET_NAME = "excited";

@@ -1,6 +1,5 @@
 package com.limengting.model;
 
-
 public class User {
 
     private Integer uid;

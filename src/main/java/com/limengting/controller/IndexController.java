@@ -35,7 +35,7 @@ public class IndexController {
     private QiniuService qiniuService;
 
     /**
-     * 去主页
+     * 主页是【讨论】模块
      * @param model
      * @param request
      * @return
