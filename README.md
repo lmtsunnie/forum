@@ -12,10 +12,9 @@
 IDE： IntelliJ idea
 
 ## 技术栈  
-
-构建工具：maven  
-
 框架：SpringMVC  
+
+构建工具：Maven
 
 持久层：MyBatis  
 
@@ -30,5 +29,5 @@ IDE： IntelliJ idea
 3. 安装并运行redis服务器
 4. 将程序文件用idea打开，下载maven依赖
 5. 安装mysql，将df.sql文件中内容写入数据库建库建表
-6. 配置tomcat服务器 
+6. idea内配置tomcat服务器，选择部署时打war包 
 7. 运行程序

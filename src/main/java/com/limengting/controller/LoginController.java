@@ -31,7 +31,7 @@ public class LoginController {
     }
 
     /**
-     * 【注册】
+     * 【立即注册】
      *
      * @param user
      * @param repassword
@@ -54,7 +54,7 @@ public class LoginController {
 
 
     /**
-     * 【登录】
+     * 【立即登录】
      *
      * @param user
      * @param model
