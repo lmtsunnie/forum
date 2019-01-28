@@ -2,7 +2,7 @@ package com.limengting.controller;
 
 
 import com.limengting.model.Message;
-import com.limengting.service.MessageService;
+import com.limengting.service.IMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +18,7 @@ public class MessageController {
 
 
     @Autowired
-    private MessageService messageService;
+    private IMessageService messageService;
 
     /**
      * 【消息】同一个人点赞多次点赞数+1但是会发多条消息，而且无法取消赞???

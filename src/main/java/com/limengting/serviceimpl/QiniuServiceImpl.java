@@ -1,15 +1,16 @@
-package com.limengting.service;
+package com.limengting.serviceimpl;
 
-import java.io.IOException;
-
+import com.limengting.service.IQiniuService;
 import com.limengting.util.MyConstant;
 import com.qiniu.http.Response;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+
 @Service
-public class QiniuService {
+public class QiniuServiceImpl implements IQiniuService {
 	// 设置好账号的ACCESS_KEY和SECRET_KEY
 	private String ACCESS_KEY = MyConstant.QINIU_ACCESS_KEY;
 	private String SECRET_KEY = MyConstant.QINIU_SECRET_KEY;
@@ -24,7 +25,8 @@ public class QiniuService {
 		return auth.uploadToken(BUCKET_NAME);
 	}
 
-	public void upload(byte[] localData,String remoteFileName) throws IOException {
+	@Override
+	public void upload(byte[] localData, String remoteFileName) throws IOException {
 		Response res = uploadManager.put(localData, remoteFileName, getUpToken());
 		// 打印返回的信息
 		System.out.println(res.bodyString());

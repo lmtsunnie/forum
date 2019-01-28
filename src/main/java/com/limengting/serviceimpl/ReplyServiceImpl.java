@@ -1,4 +1,4 @@
-package com.limengting.service;
+package com.limengting.serviceimpl;
 
 import com.limengting.async.MessageTask;
 import com.limengting.mapper.MessageMapper;
@@ -9,6 +9,7 @@ import com.limengting.model.Comment;
 import com.limengting.model.Post;
 import com.limengting.model.Reply;
 import com.limengting.model.User;
+import com.limengting.service.IReplyService;
 import com.limengting.util.MyConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
@@ -18,7 +19,7 @@ import java.util.List;
 
 
 @Service
-public class ReplyService {
+public class ReplyServiceImpl implements IReplyService {
 
     @Autowired
     private ReplyMapper replyMapper;
@@ -36,6 +37,7 @@ public class ReplyService {
     private TaskExecutor taskExecutor;
 
     //回复
+    @Override
     public void reply(int sessionUid, int pid, String content) {
         //构造Reply对象
         User user = new User(sessionUid);
@@ -56,7 +58,8 @@ public class ReplyService {
     }
 
     //评论
-    public void comment(int pid,int sessionUid, int rid, String content) {
+    @Override
+    public void comment(int pid, int sessionUid, int rid, String content) {
         //构造Comment
         User user = new User(sessionUid);
         Reply reply = new Reply(rid);
@@ -74,6 +77,7 @@ public class ReplyService {
     }
 
     //根据pid列出回复
+    @Override
     public List<Reply> listReply(int pid) {
         //列出回复
         List<Reply> replyList = replyMapper.listReply(pid);

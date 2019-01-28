@@ -1,10 +1,10 @@
 package com.limengting.controller;
 
 import com.limengting.model.*;
-import com.limengting.service.PostService;
-import com.limengting.service.ReplyService;
-import com.limengting.service.TopicService;
-import com.limengting.service.UserService;
+import com.limengting.service.IPostService;
+import com.limengting.service.IReplyService;
+import com.limengting.service.ITopicService;
+import com.limengting.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,16 +19,16 @@ import java.util.List;
 public class PostController {
 
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     @Autowired
-    private PostService postService;
+    private IPostService postService;
 
     @Autowired
-    private TopicService topicService;
+    private ITopicService topicService;
 
     @Autowired
-    private ReplyService replyService;
+    private IReplyService replyService;
 
 
     /**

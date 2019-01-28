@@ -1,8 +1,9 @@
-package com.limengting.service;
+package com.limengting.serviceimpl;
 
 import com.limengting.async.MailTask;
 import com.limengting.mapper.UserMapper;
 import com.limengting.model.User;
+import com.limengting.service.ILoginService;
 import com.limengting.util.MyConstant;
 import com.limengting.util.MyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
-public class LoginService {
+public class LoginServiceImpl implements ILoginService {
 
 
     @Autowired
@@ -28,7 +29,8 @@ public class LoginService {
     @Autowired
     private TaskExecutor taskExecutor;
 
-    //注册
+
+    @Override
     public String register(User user, String repassword) {
 
         //校验邮箱格式
@@ -73,8 +75,7 @@ public class LoginService {
         return "ok";
     }
 
-
-    //登录
+    @Override
     public Map<String, Object> login(User user) {
 
         Map<String, Object> map = new HashMap<>();
@@ -100,6 +101,7 @@ public class LoginService {
         return map;
     }
 
+    @Override
     public void activate(String activateCode) {
         userMapper.updateActived(activateCode);
     }

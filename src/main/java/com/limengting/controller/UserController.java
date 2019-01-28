@@ -2,9 +2,9 @@ package com.limengting.controller;
 
 import com.limengting.model.Post;
 import com.limengting.model.User;
-import com.limengting.service.PostService;
-import com.limengting.service.QiniuService;
-import com.limengting.service.UserService;
+import com.limengting.service.IPostService;
+import com.limengting.service.IQiniuService;
+import com.limengting.service.IUserService;
 import com.limengting.util.MyConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,13 +24,13 @@ import java.util.UUID;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     @Autowired
-    private PostService postService;
+    private IPostService postService;
 
     @Autowired
-    private QiniuService qiniuService;
+    private IQiniuService qiniuService;
 
     /**
      * 【头像】【个人主页】

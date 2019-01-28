@@ -1,9 +1,10 @@
-package com.limengting.service;
+package com.limengting.serviceimpl;
 
 import com.limengting.async.MailTask;
 import com.limengting.mapper.UserMapper;
 import com.limengting.model.Info;
 import com.limengting.model.User;
+import com.limengting.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -15,10 +16,8 @@ import redis.clients.jedis.Transaction;
 import java.util.Date;
 import java.util.List;
 
-
 @Service
-public class UserService {
-
+public class UserServiceImpl implements IUserService {
     @Autowired
     private UserMapper userMapper;
 
@@ -31,6 +30,13 @@ public class UserService {
     @Autowired
     private JedisPool jedisPool;
 
+    /**
+     * 获取自己/他人主页
+     * @param sessionUid
+     * @param uid
+     * @return
+     */
+    @Override
     public User getProfile(int sessionUid, int uid) {
         //如果是浏览别人的主页，则增加主页浏览数
         if (sessionUid != uid) {
@@ -39,10 +45,11 @@ public class UserService {
         //从数据库得到User对象
         User user = userMapper.selectUserByUid(uid);
         //设置获赞数，关注数，粉丝数
-        // ???系统学习redis
         Jedis jedis = jedisPool.getResource();
+        // scard 获取set的成员个数
         user.setFollowCount((int) (long) jedis.scard(uid + ":follow"));
         user.setFollowerCount((int) (long) jedis.scard(uid + ":fans"));
+        // HGET key field 获取存储在哈希表中指定字段的值
         String likeCount = jedis.hget("vote", uid + "");
         if (likeCount == null) {
             user.setLikeCount(0);
@@ -56,14 +63,17 @@ public class UserService {
         return user;
     }
 
+    @Override
     public User getEditInfo(int uid) {
         return userMapper.selectEditInfo(uid);
     }
 
+    @Override
     public void updateUser(User user) {
         userMapper.updateUser(user);
     }
 
+    @Override
     public void record(StringBuffer requestURL, String contextPath, String remoteAddr) {
         Info info = new Info();
         info.setRequestUrl(requestURL.toString());
@@ -73,18 +83,22 @@ public class UserService {
         userMapper.insertInfo(info);
     }
 
+    @Override
     public List<User> listUserByTime() {
         return userMapper.listUserByTime();
     }
 
+    @Override
     public List<User> listUserByHot() {
         return userMapper.listUserByHot();
     }
 
+    @Override
     public void updateHeadUrl(int uid, String headUrl) {
         userMapper.updateHeadUrl(uid, headUrl);
     }
 
+    @Override
     public void unfollow(int sessionUid, int uid) {
         Jedis jedis = jedisPool.getResource();
         Transaction tx = jedis.multi();
@@ -97,6 +111,7 @@ public class UserService {
         }
     }
 
+    @Override
     public void follow(int sessionUid, int uid) {
         Jedis jedis = jedisPool.getResource();
         Transaction tx = jedis.multi();
@@ -108,6 +123,7 @@ public class UserService {
         }
     }
 
+    @Override
     public boolean getFollowStatus(int sessionUid, int uid) {
         Jedis jedis = jedisPool.getResource();
         boolean following = jedis.sismember(sessionUid + ":follow", String.valueOf(uid));
@@ -117,6 +133,7 @@ public class UserService {
         return following;
     }
 
+    @Override
     public String updatePassword(String password, String newpassword, String repassword, int sessionUid) {
 
         String oldPassword = userMapper.selectPasswordByUid(sessionUid);
@@ -137,6 +154,7 @@ public class UserService {
     }
 
     //发送忘记密码确认邮件
+    @Override
     public void forgetPassword(String email) {
         String verifyCode = userMapper.selectVerifyCode(email);
         System.out.println("verifyCode:" + verifyCode);
@@ -144,10 +162,10 @@ public class UserService {
         taskExecutor.execute(new MailTask(verifyCode, email, javaMailSender, 2));
     }
 
+    @Override
     public void verifyForgetPassword(String code) {
         System.out.println("更新前：" + code);
         userMapper.updatePasswordByActivateCode(code);
         System.out.println("更新后：" + code);
     }
 }
-

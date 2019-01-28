@@ -2,7 +2,7 @@ package com.limengting.controller;
 
 
 import com.limengting.model.User;
-import com.limengting.service.LoginService;
+import com.limengting.service.ILoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +17,7 @@ import java.util.Map;
 public class LoginController {
 
     @Autowired
-    private LoginService loginService;
+    private ILoginService loginService;
 
 
     /**
@@ -78,7 +78,7 @@ public class LoginController {
 
     /**
      * 激活???有问题
-     *
+     * 加需求：再次点击链接显示已经过期
      * @param code
      * @param model
      * @return

@@ -1,6 +1,6 @@
 package com.limengting.controller;
 
-import com.limengting.service.ReplyService;
+import com.limengting.service.IReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 public class ReplyController {
 
     @Autowired
-    private ReplyService replyService;
+    private IReplyService replyService;
 
     @RequestMapping("/reply.do")
     public String reply(int pid, String content, HttpSession session){

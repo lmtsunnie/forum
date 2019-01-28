@@ -2,7 +2,7 @@ package com.limengting.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.limengting.model.Topic;
-import com.limengting.service.TopicService;
+import com.limengting.service.ITopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class TopicController {
 
     @Autowired
-    private TopicService topicService;
+    private ITopicService topicService;
 
     private final static Logger logger = Logger.getLogger(TopicController.class.getName());
 

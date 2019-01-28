@@ -1,20 +1,25 @@
-package com.limengting.service;
+package com.limengting.serviceimpl;
 
 import com.limengting.mapper.MessageMapper;
 import com.limengting.model.Message;
+import com.limengting.service.IMessageService;
 import com.limengting.util.MyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 @Service
-public class MessageService {
+public class MessageServiceImpl implements IMessageService {
 
     @Autowired
     private MessageMapper messageMapper;
 
     //获得消息列表
+    @Override
     public Map<String, List<Message>> listMessageByUid(Integer sessionUid) {
         List<Message> messageList = messageMapper.listMessageByUid(sessionUid);
         Map<String, List<Message>> map = new HashMap<>();
