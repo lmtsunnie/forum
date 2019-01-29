@@ -33,7 +33,7 @@
                                     <a href="toProfile.do?uid=${post.user.uid}"><img src="${post.user.headUrl}"></a>
                                 </div>
                                 <div class="post-content">
-                                    <div class="post-title"><a href="toPost.do?pid=${post.pid}">${post.title}</a></div>
+                                    <div class="post-title"><a href="toOnePost.do?pid=${post.pid}">${post.title}</a></div>
                                     <div class="post-other">
                                         <div class="post-other-left">
                                             <span class="post-username"><a href="toProfile.do?uid=${post.user.uid}">${post.user.username}</a></span>

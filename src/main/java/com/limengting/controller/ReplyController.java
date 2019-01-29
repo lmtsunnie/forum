@@ -18,14 +18,14 @@ public class ReplyController {
     public String reply(int pid, String content, HttpSession session) {
         int sessionUid = (int) session.getAttribute("uid");
         replyService.reply(sessionUid, pid, content);
-        return "redirect:toPost.do?pid=" + pid;
+        return "redirect:toOnePost.do?pid=" + pid;
     }
 
     @RequestMapping("/comment.do")
     public String comment(int pid, int rid, String content, HttpSession session) {
         int sessionUid = (int) session.getAttribute("uid");
         replyService.comment(pid, sessionUid, rid, content);
-        return "redirect:toPost.do?pid=" + pid;
+        return "redirect:toOnePost.do?pid=" + pid;
     }
 }
 

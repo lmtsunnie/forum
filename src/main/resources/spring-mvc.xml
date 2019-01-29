@@ -32,30 +32,29 @@
 
 
     <!--配置拦截器 -->
-    <!--<mvc:interceptors>
+    <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/*" />
             <bean class="com.limengting.interceptor.LoginInterceptor">
                 <property name="excludedUrls">
                     <list>
-                        <value>/toIndex.do</value>
                         <value>/upload.do</value>
                         <value>/toLogin.do</value>
                         <value>/register.do</value>
                         <value>/login.do</value>
                         <value>/activate.do</value>
                         <value>/logout.do</value>
-                        <value>/toPost.do</value>
-                        <value>/listTopic.do</value>
-                        <value>/listPostByTime.do</value>
                         <value>/forgetPassword.do</value>
                         <value>/afterForgetPassword.do</value>
                         <value>/verify.do</value>
 			            <value>/listImage.do</value>
-
+                        <value>/post.do</value>
+                        <value>/toPost.do</value>
+                        <value>/listTopic.do</value>
+                        <value>/listPostByTime.do</value>
                     </list>
                 </property>
             </bean>
         </mvc:interceptor>
-    </mvc:interceptors>-->
+    </mvc:interceptors>
 </beans>

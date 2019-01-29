@@ -9,7 +9,7 @@
         <h1 class="logo"><a href="listImage.do">北理人</a></h1>
         <ul class="left-nav">
             <li><a href="listImage.do">校园</a></li>
-            <li><a href="toIndex.do">讨论</a></li>
+            <li><a href="post.do">讨论</a></li>
             <li><a href="listTopic.do">话题</a></li>
             <li><a href="toMessage.do">消息</a></li>
         </ul>

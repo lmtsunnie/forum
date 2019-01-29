@@ -101,6 +101,6 @@ public class LoginController {
     @RequestMapping(value = "/logout.do", method = RequestMethod.GET)
     public String logout(HttpSession session) {
         session.removeAttribute("uid");
-        return "redirect:toIndex.do";
+        return "redirect:post.do";
     }
 }

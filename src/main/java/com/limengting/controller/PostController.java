@@ -38,7 +38,7 @@ public class PostController {
      * @param request
      * @return
      */
-    @RequestMapping("/toIndex.do")
+    @RequestMapping("/post.do")
     public String toIndex(Model model, HttpServletRequest request) {
         System.out.println(request.getRemoteAddr());
         //记录访问信息
@@ -105,7 +105,7 @@ public class PostController {
      * @param session
      * @return
      */
-    @RequestMapping("/toPost.do")
+    @RequestMapping("/toOnePost.do")
     public String toPost(int pid, Model model, HttpSession session) {
         Integer sessionUid = (Integer) session.getAttribute("uid");
         //获取帖子信息
