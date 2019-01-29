@@ -1,18 +1,17 @@
-package com.limengting.util;
+package com.limengting.common;
 
 
-public class MyConstant {
+public class Constant {
     public static final String QINIU_IMAGE_URL = "http://qiniu.limengting.site/";
-    public static final String QINIU_ACCESS_KEY = "OO_3P93p4-feCji_Vd3SQPA4FtrUpjw8bL1jXhF8";
-    public static final String QINIU_SECRET_KEY = "AXdJXoYtGL42K_w7UzaNxhrNU55K_XEkv-Zgte1w";
-    public static final String QINIU_BUCKET_NAME = "excited";
+    public static final String QINIU_ACCESS_KEY = "4Uk12cIO6mqC3QR0DapG349IFjP5bA_bMwIl0mcj";
+    public static final String QINIU_SECRET_KEY = "6-R9_xaEnpkR34WZf8HTTsKCJ2o8cnUk1ZJZYlnO";
+    public static final String QINIU_BUCKET_NAME = "photos";
 
     //发送邮件的邮箱，要与application.properties中的一致
     public static final String MAIL_FROM = "lmtsunnie@sina.com";
 
     //域名
-    
-    public static final String DOMAIN_NAME = "http://192.168.1.4:8080/"; // change to your own IP
+    public static final String DOMAIN_NAME = "http://192.168.3.8:8080/"; // change to your own IP
 
     //三种操作
     public static final int OPERATION_CLICK_LIKE = 1;

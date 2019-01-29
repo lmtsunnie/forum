@@ -12,11 +12,5 @@ public interface ITopicService {
      * @return
      */
     public List<Topic> listTopic();
-
-    /**
-     * 校园图片
-     * @return
-     */
-    public List<String> listImage();
 }
 

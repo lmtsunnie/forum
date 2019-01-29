@@ -1,6 +1,5 @@
 package com.limengting.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.limengting.model.Topic;
 import com.limengting.service.ITopicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,20 +31,6 @@ public class TopicController {
         List<Topic> topicList = topicService.listTopic();
         model.addAttribute("topicList", topicList);
         return "topic";
-    }
-
-    /**
-     * 【校园】【北理人】
-     *
-     * @param model
-     * @return
-     */
-    @RequestMapping("/listImage.do")
-    public String listImage(Model model) {
-        logger.info("model:" + JSON.toJSON(model) + "; 调用/listImage.do");
-        List<String> imageList = topicService.listImage();
-        model.addAttribute("imageList", imageList);
-        return "image";
     }
 }
 

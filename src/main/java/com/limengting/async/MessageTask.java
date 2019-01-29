@@ -1,12 +1,12 @@
 package com.limengting.async;
 
+import com.limengting.common.Constant;
 import com.limengting.mapper.MessageMapper;
 import com.limengting.mapper.PostMapper;
 import com.limengting.mapper.ReplyMapper;
 import com.limengting.mapper.UserMapper;
 import com.limengting.model.Message;
 import com.limengting.model.User;
-import com.limengting.util.MyConstant;
 
 public class MessageTask implements Runnable {
 
@@ -45,16 +45,16 @@ public class MessageTask implements Runnable {
         message.setPostId(pid);
 
         //设置操作和展示的内容
-        if(operation== MyConstant.OPERATION_CLICK_LIKE){
+        if (operation == Constant.OPERATION_CLICK_LIKE) {
             message.setOperation("赞了您的帖子");
             message.setDisplayedContent(postMapper.getTitleByPid(pid));
-        }else if(operation==MyConstant.OPERATION_REPLY){
+        } else if (operation == Constant.OPERATION_REPLY) {
             message.setOperation("回复了您的帖子");
             message.setDisplayedContent(postMapper.getTitleByPid(pid));
-        }else if(operation==MyConstant.OPERATION_COMMENT){
+        } else if (operation == Constant.OPERATION_COMMENT) {
             message.setOperation("评论了你帖子的回复");
             String content = replyMapper.getContentByRid(rid);
-            message.setDisplayedContent(content.substring(content.indexOf("<p>") + 3,content.indexOf("</p>")));
+            message.setDisplayedContent(content.substring(content.indexOf("<p>") + 3, content.indexOf("</p>")));
         }
 
         //向数据库插入一条消息

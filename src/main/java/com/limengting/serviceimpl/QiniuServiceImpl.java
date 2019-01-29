@@ -1,7 +1,7 @@
 package com.limengting.serviceimpl;
 
+import com.limengting.common.Constant;
 import com.limengting.service.IQiniuService;
-import com.limengting.util.MyConstant;
 import com.qiniu.http.Response;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
@@ -12,10 +12,10 @@ import java.io.IOException;
 @Service
 public class QiniuServiceImpl implements IQiniuService {
 	// 设置好账号的ACCESS_KEY和SECRET_KEY
-	private String ACCESS_KEY = MyConstant.QINIU_ACCESS_KEY;
-	private String SECRET_KEY = MyConstant.QINIU_SECRET_KEY;
+	private String ACCESS_KEY = Constant.QINIU_ACCESS_KEY;
+	private String SECRET_KEY = Constant.QINIU_SECRET_KEY;
 	// 要上传的空间
-	private String BUCKET_NAME = MyConstant.QINIU_BUCKET_NAME;
+	private String BUCKET_NAME = Constant.QINIU_BUCKET_NAME;
 	// 密钥配置
 	private Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
 	// 创建上传对象

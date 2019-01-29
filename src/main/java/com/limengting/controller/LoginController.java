@@ -1,6 +1,5 @@
 package com.limengting.controller;
 
-
 import com.limengting.model.User;
 import com.limengting.service.ILoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,17 +10,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
+import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/")
 public class LoginController {
-
     @Autowired
     private ILoginService loginService;
 
+    private final static Logger logger = Logger.getLogger(LoginController.class.getName());
 
     /**
-     * 去注册和登录的页面
+     * 登录和注册的页面
      *
      * @return
      */
@@ -31,7 +31,7 @@ public class LoginController {
     }
 
     /**
-     * 【立即注册】
+     * 【立即注册】按钮
      *
      * @param user
      * @param repassword
@@ -42,7 +42,7 @@ public class LoginController {
     public String register(User user, String repassword, Model model) {
         String result = loginService.register(user, repassword);
         if (result.equals("ok")) {
-            model.addAttribute("info", "系统已经向你的邮箱发送了一封邮件哦，验证后就可以登录啦~");
+            model.addAttribute("info", "系统已经向您的邮箱发送了一封激活邮件，验证后就可以登录了。");
             return "prompt/promptInfo";
         } else {
             model.addAttribute("register", "yes");
@@ -54,7 +54,7 @@ public class LoginController {
 
 
     /**
-     * 【立即登录】
+     * 【立即登录】按钮
      *
      * @param user
      * @param model
@@ -75,10 +75,10 @@ public class LoginController {
         }
     }
 
-
     /**
-     * 激活???有问题
-     * 加需求：再次点击链接显示已经过期
+     * 激活
+     * ???加需求：再次点击链接显示已经过期
+     *
      * @param code
      * @param model
      * @return
@@ -87,7 +87,7 @@ public class LoginController {
     public String activate(String code, Model model) {
         loginService.activate(code);
 
-        model.addAttribute("info", "您的账户已经激活成功，可以去登录啦~");
+        model.addAttribute("info", "您的账户已经激活成功，请点击右上角登录");
         return "prompt/promptInfo";
     }
 
@@ -104,5 +104,3 @@ public class LoginController {
         return "redirect:toIndex.do";
     }
 }
-
-

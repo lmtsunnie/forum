@@ -6,9 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-
 public interface UserMapper {
-
     int selectEmailCount(String email);
 
     void insertUser(User user);
@@ -30,9 +28,9 @@ public interface UserMapper {
 
     void insertInfo(Info info);
 
-    List<User> listUserByTime();
+    List<User> listUserByJoinTime();
 
-    List<User> listUserByHot();
+    List<User> listUserByPostCount();
 
     void updateHeadUrl(@Param("uid") int uid, @Param("headUrl") String headUrl);
 
@@ -49,6 +47,4 @@ public interface UserMapper {
     String selectVerifyCode(String email);
 
     void updatePasswordByActivateCode(String code);
-
-
 }

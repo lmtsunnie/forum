@@ -1,6 +1,7 @@
 package com.limengting.serviceimpl;
 
 import com.limengting.async.MessageTask;
+import com.limengting.common.Constant;
 import com.limengting.mapper.MessageMapper;
 import com.limengting.mapper.PostMapper;
 import com.limengting.mapper.ReplyMapper;
@@ -10,7 +11,6 @@ import com.limengting.model.Post;
 import com.limengting.model.Reply;
 import com.limengting.model.User;
 import com.limengting.service.IReplyService;
-import com.limengting.util.MyConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.stereotype.Service;
@@ -42,7 +42,7 @@ public class ReplyServiceImpl implements IReplyService {
         //构造Reply对象
         User user = new User(sessionUid);
         Post post = new Post(pid);
-        Reply reply =new Reply();
+        Reply reply = new Reply();
         reply.setUser(user);
         reply.setPost(post);
         reply.setContent(content);
@@ -53,7 +53,7 @@ public class ReplyServiceImpl implements IReplyService {
         //更新最后回复时间
         postMapper.updateReplyTime(pid);
         //插入一条回复消息
-        taskExecutor.execute(new MessageTask(messageMapper,userMapper,postMapper,replyMapper,pid,0,sessionUid, MyConstant.OPERATION_REPLY));
+        taskExecutor.execute(new MessageTask(messageMapper, userMapper, postMapper, replyMapper, pid, 0, sessionUid, Constant.OPERATION_REPLY));
 
     }
 
@@ -72,7 +72,7 @@ public class ReplyServiceImpl implements IReplyService {
         //更新最后回复时间
         postMapper.updateReplyTime(pid);
         //插入一条评论消息
-        taskExecutor.execute(new MessageTask(messageMapper,userMapper,postMapper,replyMapper,pid,rid,sessionUid, MyConstant.OPERATION_COMMENT));
+        taskExecutor.execute(new MessageTask(messageMapper, userMapper, postMapper, replyMapper, pid, rid, sessionUid, Constant.OPERATION_COMMENT));
 
     }
 
@@ -81,7 +81,7 @@ public class ReplyServiceImpl implements IReplyService {
     public List<Reply> listReply(int pid) {
         //列出回复
         List<Reply> replyList = replyMapper.listReply(pid);
-        for(Reply reply : replyList){
+        for (Reply reply : replyList) {
             //列出每条回复下的评论
             List<Comment> commentList = replyMapper.listComment(reply.getRid());
             reply.setCommentList(commentList);

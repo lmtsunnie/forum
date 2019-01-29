@@ -1,9 +1,9 @@
 package com.limengting.serviceimpl;
 
+import com.limengting.common.Util;
 import com.limengting.mapper.MessageMapper;
 import com.limengting.model.Message;
 import com.limengting.service.IMessageService;
-import com.limengting.util.MyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +24,7 @@ public class MessageServiceImpl implements IMessageService {
         List<Message> messageList = messageMapper.listMessageByUid(sessionUid);
         Map<String, List<Message>> map = new HashMap<>();
         for(Message message : messageList){
-            String time = MyUtil.formatDate(message.getMsgTime()).substring(0,11);
+            String time = Util.formatDate(message.getMsgTime()).substring(0,11);
             if(map.get(time)==null){
                 map.put(time,new LinkedList<Message>());
                 map.get(time).add(message);

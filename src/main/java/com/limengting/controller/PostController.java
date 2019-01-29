@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -30,6 +31,30 @@ public class PostController {
     @Autowired
     private IReplyService replyService;
 
+    /**
+     * 【讨论】模块
+     *
+     * @param model
+     * @param request
+     * @return
+     */
+    @RequestMapping("/toIndex.do")
+    public String toIndex(Model model, HttpServletRequest request) {
+        System.out.println(request.getRemoteAddr());
+        //记录访问信息
+        userService.record(request.getRequestURL(), request.getContextPath(), request.getRemoteAddr());
+        //列出帖子
+        PageBean<Post> pageBean = postService.listPostByTime(1);
+        //列出用户
+        List<User> userList = userService.listUserByTime();
+        //列出活跃用户
+        List<User> hotUserList = userService.listUserByHot();
+        //向模型中添加数据
+        model.addAttribute("pageBean", pageBean);
+        model.addAttribute("userList", userList);
+        model.addAttribute("hotUserList", hotUserList);
+        return "index";
+    }
 
     /**
      * 【我要发布】

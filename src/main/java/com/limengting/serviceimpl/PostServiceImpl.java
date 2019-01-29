@@ -1,6 +1,8 @@
 package com.limengting.serviceimpl;
 
 import com.limengting.async.MessageTask;
+import com.limengting.common.Constant;
+import com.limengting.common.Util;
 import com.limengting.mapper.MessageMapper;
 import com.limengting.mapper.PostMapper;
 import com.limengting.mapper.ReplyMapper;
@@ -8,8 +10,6 @@ import com.limengting.mapper.UserMapper;
 import com.limengting.model.PageBean;
 import com.limengting.model.Post;
 import com.limengting.service.IPostService;
-import com.limengting.util.MyConstant;
-import com.limengting.util.MyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.stereotype.Service;
@@ -50,8 +50,8 @@ public class PostServiceImpl implements IPostService {
     public int publishPost(Post post) {
 
         //构造帖子
-        post.setPublishTime(MyUtil.formatDate(new Date()));
-        post.setReplyTime(MyUtil.formatDate(new Date()));
+        post.setPublishTime(Util.formatDate(new Date()));
+        post.setReplyTime(Util.formatDate(new Date()));
         post.setReplyCount(0);
         post.setLikeCount(0);
         post.setScanCount(0);
@@ -121,7 +121,7 @@ public class PostServiceImpl implements IPostService {
         jedis.hincrBy("vote", sessionUid + "", 1);
 
         //插入一条点赞消息
-        taskExecutor.execute(new MessageTask(messageMapper, userMapper, postMapper, replyMapper, pid, 0, sessionUid, MyConstant.OPERATION_CLICK_LIKE));
+        taskExecutor.execute(new MessageTask(messageMapper, userMapper, postMapper, replyMapper, pid, 0, sessionUid, Constant.OPERATION_CLICK_LIKE));
         String result = String.valueOf(jedis.scard(pid + ":like"));
 
         if (jedis != null) {

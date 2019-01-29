@@ -85,12 +85,12 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public List<User> listUserByTime() {
-        return userMapper.listUserByTime();
+        return userMapper.listUserByJoinTime();
     }
 
     @Override
     public List<User> listUserByHot() {
-        return userMapper.listUserByHot();
+        return userMapper.listUserByPostCount();
     }
 
     @Override
@@ -101,10 +101,12 @@ public class UserServiceImpl implements IUserService {
     @Override
     public void unfollow(int sessionUid, int uid) {
         Jedis jedis = jedisPool.getResource();
-        Transaction tx = jedis.multi();
-        tx.srem(sessionUid + ":follow", String.valueOf(uid));
-        tx.srem(uid + ":fans", String.valueOf(sessionUid));
-        tx.exec();
+        // 以 MULTI 开始一个事务， 然后将多个命令入队到事务中， 最后由 EXEC 命令触发事务， 一并执行事务中的所有命令
+        Transaction transaction = jedis.multi();
+        // srem key member1 [member2] 移除集合中一个或多个成员
+        transaction.srem(sessionUid + ":follow", String.valueOf(uid));
+        transaction.srem(uid + ":fans", String.valueOf(sessionUid));
+        transaction.exec();
 
         if (jedis != null) {
             jedisPool.returnResource(jedis);
@@ -114,10 +116,13 @@ public class UserServiceImpl implements IUserService {
     @Override
     public void follow(int sessionUid, int uid) {
         Jedis jedis = jedisPool.getResource();
-        Transaction tx = jedis.multi();
-        tx.sadd(sessionUid + ":follow", String.valueOf(uid));
-        tx.sadd(uid + ":fans", String.valueOf(sessionUid));
-        tx.exec();
+        Transaction transaction = jedis.multi();
+        // SADD key member1 [member2] 向集合添加一个或多个成员
+        // sessionUid follow的人中加入uid
+        transaction.sadd(sessionUid + ":follow", String.valueOf(uid));
+        // uid的fans的集合中加入sessionUid
+        transaction.sadd(uid + ":fans", String.valueOf(sessionUid));
+        transaction.exec();
         if (jedis != null) {
             jedisPool.returnResource(jedis);
         }
@@ -126,6 +131,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public boolean getFollowStatus(int sessionUid, int uid) {
         Jedis jedis = jedisPool.getResource();
+        // SISMEMBER key member 判断 member 元素是否是集合 key 的成员
         boolean following = jedis.sismember(sessionUid + ":follow", String.valueOf(uid));
         if (jedis != null) {
             jedisPool.returnResource(jedis);
@@ -135,18 +141,17 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public String updatePassword(String password, String newpassword, String repassword, int sessionUid) {
-
         String oldPassword = userMapper.selectPasswordByUid(sessionUid);
         if (!oldPassword.equals(password)) {
-            return "原密码输入错误~";
+            return "原密码输入错误";
         }
 
         if (newpassword.length() < 6 || newpassword.length() > 20) {
-            return "新密码长度要在6~20之间~";
+            return "新密码长度要在6~20之间";
         }
 
         if (!newpassword.equals(repassword)) {
-            return "新密码两次输入不一致~";
+            return "新密码两次输入不一致";
         }
 
         userMapper.updatePassword(newpassword, sessionUid);

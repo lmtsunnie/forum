@@ -32,7 +32,7 @@
 
 
     <!--配置拦截器 -->
-    <mvc:interceptors>
+    <!--<mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/*" />
             <bean class="com.limengting.interceptor.LoginInterceptor">
@@ -57,5 +57,5 @@
                 </property>
             </bean>
         </mvc:interceptor>
-    </mvc:interceptors>
+    </mvc:interceptors>-->
 </beans>

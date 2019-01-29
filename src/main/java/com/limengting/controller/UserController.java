@@ -1,11 +1,13 @@
 package com.limengting.controller;
 
+import com.limengting.mapper.UserMapper;
 import com.limengting.model.Post;
 import com.limengting.model.User;
 import com.limengting.service.IPostService;
 import com.limengting.service.IQiniuService;
 import com.limengting.service.IUserService;
-import com.limengting.util.MyConstant;
+import com.limengting.common.Constant;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +33,9 @@ public class UserController {
 
     @Autowired
     private IQiniuService qiniuService;
+
+    @Autowired
+    private UserMapper userMapper;
 
     /**
      * 【头像】【个人主页】
@@ -70,7 +75,7 @@ public class UserController {
         User user = userService.getProfile(sessionUid, uid);
         //获得发帖列表
         List<Post> postList = postService.getPostList(uid);
-        //向模型中添加数据
+        //向model中添加数据
         model.addAttribute("following", following);
         model.addAttribute("user", user);
         model.addAttribute("postList", postList);
@@ -108,6 +113,7 @@ public class UserController {
 
     /**
      * 修改密码
+     *
      * @param password
      * @param newpassword
      * @param repassword
@@ -128,28 +134,31 @@ public class UserController {
     }
 
     /**
+     * 忘记密码
      *
      * @param email
      * @return
      */
     @RequestMapping("/forgetPassword.do")
-    public @ResponseBody
-    String forgetPassword(String email) {
+    public @ResponseBody String forgetPassword(String email) {
         userService.forgetPassword(email);
         return "";
     }
 
     /**
-     * 【忘记密码】
+     * 忘记密码发送邮件之后
+     *
      * @return
      */
     @RequestMapping("/afterForgetPassword.do")
-    public String afterForgetPassword() {
-        return "prompt/afterForgetPassword";
+    public String afterForgetPassword(Model model) {
+        model.addAttribute("info", "系统已经将新密码发至您的邮箱，请用新密码重新登录");
+        return "prompt/promptInfo";
     }
 
     /**
      * 更新头像???没用
+     *
      * @param myFileName
      * @param model
      * @param session
@@ -162,12 +171,12 @@ public class UserController {
         String[] allowedType = {"image/bmp", "image/gif", "image/jpeg", "image/png"};
         boolean allowed = Arrays.asList(allowedType).contains(myFileName.getContentType());
         if (!allowed) {
-            model.addAttribute("error3", "图片格式仅限bmp，jpg，png，gif~");
+            model.addAttribute("error3", "图片格式仅限bmp，jpg，png，gif");
             return "editProfile";
         }
         // 图片大小限制
         if (myFileName.getSize() > 3 * 1024 * 1024) {
-            model.addAttribute("error3", "图片大小限制在3M以下哦~");
+            model.addAttribute("error3", "图片大小限制在3M以下");
             return "editProfile";
         }
         // 包含原始文件名的字符串
@@ -180,13 +189,14 @@ public class UserController {
 
         //更新数据库中头像URL
         int uid = (int) session.getAttribute("uid");
-        userService.updateHeadUrl(uid, MyConstant.QINIU_IMAGE_URL + remoteFileName);
+        userService.updateHeadUrl(uid, Constant.QINIU_IMAGE_URL + remoteFileName);
 
         return "redirect:toMyProfile.do";
     }
 
     /**
      * 【关注】
+     *
      * @param uid
      * @param session
      * @return
@@ -200,6 +210,7 @@ public class UserController {
 
     /**
      * 【取消关注】
+     *
      * @param uid
      * @param session
      * @return
@@ -213,6 +224,7 @@ public class UserController {
 
     /**
      * 收到激活邮件后确认将密码修改为"xxx"???没用
+     *
      * @param code
      * @return
      */

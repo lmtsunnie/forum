@@ -45,24 +45,28 @@ public interface IUserService {
     List<User> listUserByHot();
 
     /**
+     * 更新头像
      * @param uid
      * @param headUrl
      */
     void updateHeadUrl(int uid, String headUrl);
 
     /**
+     * sessionUid unfollow uid
      * @param sessionUid
      * @param uid
      */
     void unfollow(int sessionUid, int uid);
 
     /**
+     * sessionUid follow uid
      * @param sessionUid
      * @param uid
      */
     void follow(int sessionUid, int uid);
 
     /**
+     * sessionUid是否follow uid
      * @param sessionUid
      * @param uid
      * @return

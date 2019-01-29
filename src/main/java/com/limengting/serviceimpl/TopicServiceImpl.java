@@ -18,10 +18,5 @@ public class TopicServiceImpl implements ITopicService {
     public List<Topic> listTopic() {
         return topicMapper.listTopic();
     }
-
-    @Override
-    public List<String> listImage() {
-        return topicMapper.listImage();
-    }
 }
 

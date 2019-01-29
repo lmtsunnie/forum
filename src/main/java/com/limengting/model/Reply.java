@@ -1,7 +1,10 @@
 package com.limengting.model;
 
+import lombok.Data;
+
 import java.util.List;
 
+@Data
 public class Reply {
 
     private Integer rid;
@@ -21,54 +24,6 @@ public class Reply {
 
     public Reply(Integer rid) {
         this.rid = rid;
-    }
-
-    public Integer getRid() {
-        return rid;
-    }
-
-    public void setRid(Integer rid) {
-        this.rid = rid;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Post getPost() {
-        return post;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public List<Comment> getCommentList() {
-        return commentList;
-    }
-
-    public void setCommentList(List<Comment> commentList) {
-        this.commentList = commentList;
-    }
-
-    public String getReplyTime() {
-        return replyTime;
-    }
-
-    public void setReplyTime(String replyTime) {
-        this.replyTime = replyTime;
     }
 
     @Override

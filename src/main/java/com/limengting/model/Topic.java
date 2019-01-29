@@ -1,5 +1,8 @@
 package com.limengting.model;
 
+import lombok.Data;
+
+@Data
 public class Topic {
 
     private Integer tid;
@@ -14,38 +17,6 @@ public class Topic {
 
     public Topic(Integer tid) {
         this.tid = tid;
-    }
-
-    public Integer getTid() {
-        return tid;
-    }
-
-    public void setTid(Integer tid) {
-        this.tid = tid;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     @Override

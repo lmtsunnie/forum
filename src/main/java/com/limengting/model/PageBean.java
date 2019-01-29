@@ -1,6 +1,9 @@
 package com.limengting.model;
+import lombok.Data;
+
 import java.util.List;
 
+@Data
 public class PageBean<T> {
 
     private int allPage;
@@ -13,30 +16,6 @@ public class PageBean<T> {
     public PageBean(int allPage, int curPage) {
         this.allPage = allPage;
         this.curPage = curPage;
-    }
-
-    public int getAllPage() {
-        return allPage;
-    }
-
-    public void setAllPage(int allPage) {
-        this.allPage = allPage;
-    }
-
-    public int getCurPage() {
-        return curPage;
-    }
-
-    public void setCurPage(int curPage) {
-        this.curPage = curPage;
-    }
-
-    public List<T> getList() {
-        return list;
-    }
-
-    public void setList(List<T> list) {
-        this.list = list;
     }
 
     @Override
