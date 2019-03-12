@@ -7,7 +7,6 @@ import com.limengting.service.IPostService;
 import com.limengting.service.IQiniuService;
 import com.limengting.service.IUserService;
 import com.limengting.common.Constant;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +18,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/")
@@ -159,37 +157,41 @@ public class UserController {
     /**
      * 更新头像???没用
      *
-     * @param myFileName
+     * @param file
      * @param model
      * @param session
      * @return
      * @throws IOException
      */
     @RequestMapping("/updateHeadUrl.do")
-    public String updateHeadUrl(MultipartFile myFileName, Model model, HttpSession session) throws IOException {
+    public String updateHeadUrl(MultipartFile file, Model model, HttpSession session) throws IOException {
         // 文件类型限制
         String[] allowedType = {"image/bmp", "image/gif", "image/jpeg", "image/png"};
-        boolean allowed = Arrays.asList(allowedType).contains(myFileName.getContentType());
+        boolean allowed = Arrays.asList(allowedType).contains(file.getContentType());
         if (!allowed) {
             model.addAttribute("error3", "图片格式仅限bmp，jpg，png，gif");
             return "editProfile";
         }
         // 图片大小限制
-        if (myFileName.getSize() > 3 * 1024 * 1024) {
+        if (file.getSize() > 3 * 1024 * 1024) {
             model.addAttribute("error3", "图片大小限制在3M以下");
             return "editProfile";
         }
         // 包含原始文件名的字符串
-        String fi = myFileName.getOriginalFilename();
+        String filename = file.getOriginalFilename();
         // 提取文件拓展名
-        String fileNameExtension = fi.substring(fi.indexOf("."), fi.length());
+        String fileNameExtension = filename.substring(filename.indexOf("."), filename.length());
         // 生成云端的真实文件名
-        String remoteFileName = UUID.randomUUID().toString() + fileNameExtension;
-        qiniuService.upload(myFileName.getBytes(), remoteFileName);
+        /*String remoteFileName = UUID.randomUUID().toString() + fileNameExtension;
+        qiniuService.upload(file.getBytes(), remoteFileName);*/
+        String hash = qiniuService.upload(file.getBytes(), filename);
 
         //更新数据库中头像URL
         int uid = (int) session.getAttribute("uid");
-        userService.updateHeadUrl(uid, Constant.QINIU_IMAGE_URL + remoteFileName);
+        String newHeadUrl = Constant.QINIU_IMAGE_URL + hash;
+        // 更新session中的headUrl
+        session.setAttribute("headUrl", newHeadUrl);
+        userService.updateHeadUrl(uid, newHeadUrl);
 
         return "redirect:toMyProfile.do";
     }

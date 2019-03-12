@@ -4,5 +4,5 @@ import java.io.IOException;
 
 public interface IQiniuService {
 
-    void upload(byte[] localData, String remoteFileName) throws IOException;
+    String upload(byte[] localData, String remoteFileName) throws IOException;
 }

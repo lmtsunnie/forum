@@ -22,7 +22,7 @@ public class QiniuService {
 
 
     // 创建上传对象
-    private UploadManager uploadManager = new UploadManager();
+    //private UploadManager uploadManager = new UploadManager();
 
     // 简单上传，使用默认策略，只需要设置上传的空间名就可以了
     public String getUpToken() {
@@ -30,9 +30,9 @@ public class QiniuService {
     }
 
     public void upload(byte[] localData, String remoteFileName) throws IOException {
-        Response res = uploadManager.put(localData, remoteFileName, getUpToken());
+       // Response res = uploadManager.put(localData, remoteFileName, getUpToken());
         // 打印返回的信息
-        System.out.println(res.bodyString());
+     //   System.out.println(res.bodyString());
     }
 
 }
