@@ -77,7 +77,7 @@ public class PostController {
     @RequestMapping("/publishPost.do")
     public String publishPost(Post post) {
         int id = postService.publishPost(post);
-        return "redirect:toPost.do?pid=" + id;
+        return "redirect:toOnePost.do?pid=" + id;
     }
 
 

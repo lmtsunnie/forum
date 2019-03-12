@@ -48,9 +48,9 @@ public class IndexController {
         //列出帖子
         PageBean<Post> pageBean = postService.listPostByTime(1);
         //列出用户
-        List<User> userList = userService.listUserByTime();
+        List<User> userList = userService.listUserByJoinTime();
         //列出活跃用户
-        List<User> hotUserList = userService.listUserByHot();
+        List<User> hotUserList = userService.listUserByPostCount();
         //向模型中添加数据
         model.addAttribute("pageBean",pageBean);
         model.addAttribute("userList",userList);

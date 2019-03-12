@@ -19,8 +19,5 @@ public class TopicService {
         return topicMapper.listTopic();
     }
 
-    public List<String> listImage() {
-        return topicMapper.listImage();
-    }
 }
 

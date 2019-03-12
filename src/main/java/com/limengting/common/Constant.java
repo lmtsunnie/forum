@@ -1,6 +1,5 @@
 package com.limengting.common;
 
-
 public class Constant {
     public static final String QINIU_IMAGE_URL = "http://qiniu.limengting.site/";
     public static final String QINIU_ACCESS_KEY = "4Uk12cIO6mqC3QR0DapG349IFjP5bA_bMwIl0mcj";
@@ -12,7 +11,7 @@ public class Constant {
 
     //域名
     //public static final String DOMAIN_NAME = "http://192.168.3.8:8080/"; // change to your own IP
-    public static final String DOMAIN_NAME = "http://123.207.143.168:9000/"; // change to your own IP
+    public static final String DOMAIN_NAME = "http://123.207.143.168:9000/forum/"; // change to your own IP
 
     //三种操作
     public static final int OPERATION_CLICK_LIKE = 1;

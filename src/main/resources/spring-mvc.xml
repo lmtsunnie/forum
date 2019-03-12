@@ -49,7 +49,7 @@
                         <value>/verify.do</value>
 			            <value>/listImage.do</value>
                         <value>/post.do</value>
-                        <value>/toPost.do</value>
+                        <value>/toOnePost.do</value>
                         <value>/listTopic.do</value>
                         <value>/listPostByTime.do</value>
                     </list>
