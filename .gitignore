@@ -2,3 +2,4 @@
 *.log
 .idea
 df.iml
+application.properties
