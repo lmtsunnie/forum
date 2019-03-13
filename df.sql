@@ -77,15 +77,15 @@ CREATE TABLE `info` (
 -- ----------------------------
 -- Records of info
 -- ----------------------------
-INSERT INTO `info` VALUES ('1', 'http://localhost:8080/df/toIndex.do', '/df', '0:0:0:0:0:0:0:1', '2016-10-24 20:45:45');
-INSERT INTO `info` VALUES ('2', 'http://localhost:8080/df/toIndex.do', '/df', '0:0:0:0:0:0:0:1', '2016-10-24 20:47:37');
-INSERT INTO `info` VALUES ('3', 'http://localhost:8080/df/toIndex.do', '/df', '0:0:0:0:0:0:0:1', '2016-10-24 21:26:04');
-INSERT INTO `info` VALUES ('4', 'http://localhost:8080/df/toIndex.do', '/df', '0:0:0:0:0:0:0:1', '2016-10-25 09:54:04');
-INSERT INTO `info` VALUES ('5', 'http://localhost:8080/df/toIndex.do', '/df', '0:0:0:0:0:0:0:1', '2016-10-25 09:54:52');
-INSERT INTO `info` VALUES ('6', 'http://localhost:8080/df/toIndex.do', '/df', '0:0:0:0:0:0:0:1', '2016-10-25 10:03:23');
-INSERT INTO `info` VALUES ('7', 'http://localhost:8080/df/toIndex.do', '/df', '0:0:0:0:0:0:0:1', '2016-10-25 10:18:38');
-INSERT INTO `info` VALUES ('8', 'http://localhost:8080/df/toIndex.do', '/df', '0:0:0:0:0:0:0:1', '2016-10-25 10:18:49');
-INSERT INTO `info` VALUES ('9', 'http://localhost:8080/df/toIndex.do', '/df', '0:0:0:0:0:0:0:1', '2016-11-11 23:22:21');
+INSERT INTO `info` VALUES ('1', 'http://localhost:8080/df/listPostsByTime.do', '/df', '0:0:0:0:0:0:0:1', '2016-10-24 20:45:45');
+INSERT INTO `info` VALUES ('2', 'http://localhost:8080/df/listPostsByTime.do', '/df', '0:0:0:0:0:0:0:1', '2016-10-24 20:47:37');
+INSERT INTO `info` VALUES ('3', 'http://localhost:8080/df/listPostsByTime.do', '/df', '0:0:0:0:0:0:0:1', '2016-10-24 21:26:04');
+INSERT INTO `info` VALUES ('4', 'http://localhost:8080/df/listPostsByTime.do', '/df', '0:0:0:0:0:0:0:1', '2016-10-25 09:54:04');
+INSERT INTO `info` VALUES ('5', 'http://localhost:8080/df/listPostsByTime.do', '/df', '0:0:0:0:0:0:0:1', '2016-10-25 09:54:52');
+INSERT INTO `info` VALUES ('6', 'http://localhost:8080/df/listPostsByTime.do', '/df', '0:0:0:0:0:0:0:1', '2016-10-25 10:03:23');
+INSERT INTO `info` VALUES ('7', 'http://localhost:8080/df/listPostsByTime.do', '/df', '0:0:0:0:0:0:0:1', '2016-10-25 10:18:38');
+INSERT INTO `info` VALUES ('8', 'http://localhost:8080/df/listPostsByTime.do', '/df', '0:0:0:0:0:0:0:1', '2016-10-25 10:18:49');
+INSERT INTO `info` VALUES ('9', 'http://localhost:8080/df/listPostsByTime.do', '/df', '0:0:0:0:0:0:0:1', '2016-11-11 23:22:21');
 
 -- ----------------------------
 -- Table structure for `message`

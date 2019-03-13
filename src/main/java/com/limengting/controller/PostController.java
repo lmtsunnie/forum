@@ -39,12 +39,12 @@ public class PostController {
      * @return
      */
     @RequestMapping("/post.do")
-    public String toIndex(Model model, HttpServletRequest request) {
+    public String listPostsByTime(Model model, HttpServletRequest request) {
         System.out.println(request.getRemoteAddr());
         //记录访问信息
         userService.record(request.getRequestURL(), request.getContextPath(), request.getRemoteAddr());
         //列出帖子
-        PageBean<Post> pageBean = postService.listPostByTime(1);
+        PageBean<Post> pageBean = postService.listPosts(1, "Time");
         //列出用户
         List<User> userList = userService.listUserByTime();
         //列出活跃用户
@@ -55,6 +55,58 @@ public class PostController {
         model.addAttribute("hotUserList", hotUserList);
         return "index";
     }
+
+    /**
+     * 【讨论】模块
+     * 按热度，回帖数量
+     *
+     * @param model
+     * @param request
+     * @return
+     */
+    @RequestMapping("/postByHot.do")
+    public String listPostsByHot(Model model, HttpServletRequest request) {
+        System.out.println(request.getRemoteAddr());
+        //记录访问信息
+        userService.record(request.getRequestURL(), request.getContextPath(), request.getRemoteAddr());
+        //列出帖子
+        PageBean<Post> pageBean = postService.listPosts(1, "Hot");
+        //列出用户
+        List<User> userList = userService.listUserByTime();
+        //列出活跃用户
+        List<User> hotUserList = userService.listUserByHot();
+        //向模型中添加数据
+        model.addAttribute("pageBean", pageBean);
+        model.addAttribute("userList", userList);
+        model.addAttribute("hotUserList", hotUserList);
+        return "indexByHot";
+    }
+
+    /**
+     * 按质量，点赞数
+     * @param model
+     * @param request
+     * @return
+     */
+    @RequestMapping("/postByQuality.do")
+    public String listPostsByQuality(Model model, HttpServletRequest request) {
+        System.out.println(request.getRemoteAddr());
+        //记录访问信息
+        userService.record(request.getRequestURL(), request.getContextPath(), request.getRemoteAddr());
+        //列出帖子
+        PageBean<Post> pageBean = postService.listPosts(1, "Quality");
+        //列出用户
+        List<User> userList = userService.listUserByTime();
+        //列出活跃用户
+        List<User> hotUserList = userService.listUserByHot();
+        //向模型中添加数据
+        model.addAttribute("pageBean", pageBean);
+        model.addAttribute("userList", userList);
+        model.addAttribute("hotUserList", hotUserList);
+        return "indexByQuality";
+    }
+
+
 
     /**
      * 【我要发布】
@@ -89,7 +141,7 @@ public class PostController {
      */
     @RequestMapping("/listPostByTime.do")
     public String listPostByTime(int curPage, Model model) {
-        PageBean<Post> pageBean = postService.listPostByTime(curPage);
+        PageBean<Post> pageBean = postService.listPosts(curPage, "Time");
         List<User> userList = userService.listUserByTime();
         List<User> hotUserList = userService.listUserByHot();
         model.addAttribute("pageBean", pageBean);

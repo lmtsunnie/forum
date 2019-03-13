@@ -22,7 +22,7 @@
 
 
     <insert id="insertReply">
-        insert into reply(content,uid,pid,reply_time) values(#{content},#{user.uid},#{post.pid},date_format(now(),'%Y-%c-%d %H:%i:%s'))
+        insert into reply(content,uid,pid,reply_time) values(#{content},#{user.uid},#{post.pid},date_format(now(),'%Y-%m-%d %H:%i:%s'))
     </insert>
 
     <select id="listReply" resultMap="replyMap">
@@ -31,7 +31,7 @@
     </select>
 
     <insert id="insertComment">
-        insert into comment(content,uid,rid,comment_time) values(#{content},#{user.uid},#{reply.rid},date_format(now(),'%Y-%c-%d %H:%i:%s'))
+        insert into comment(content,uid,rid,comment_time) values(#{content},#{user.uid},#{reply.rid},date_format(now(),'%Y-%m-%d %H:%i:%s'))
     </insert>
 
     <select id="listComment" resultMap="commentMap">

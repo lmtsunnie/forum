@@ -22,6 +22,8 @@ public interface UserMapper {
 
     void updateUser(User user);
 
+    void updateLikeCount(Integer uid);
+
     void updatePostCount(Integer uid);
 
     void updateActived(String activateCode);

@@ -51,6 +51,18 @@
         order by p.reply_time desc limit #{offset},#{limit}
     </select>
 
+    <select id="listPostByHot" resultMap="postMap">
+        select u.uid,u.username,u.head_url,p.pid,p.title,p.publish_time,p.reply_time,p.reply_count,p.like_count,p.scan_count from post p
+        join user u on p.uid = u.uid
+        order by p.reply_count desc limit #{offset},#{limit}
+    </select>
+
+    <select id="listPostByQuality" resultMap="postMap">
+        select u.uid,u.username,u.head_url,p.pid,p.title,p.publish_time,p.reply_time,p.reply_count,p.like_count,p.scan_count from post p
+        join user u on p.uid = u.uid
+        order by p.like_count desc limit #{offset},#{limit}
+    </select>
+
     <select id="selectPostCount" resultType="int">
         select count(*) from post
     </select>
@@ -61,6 +73,10 @@
         where p.pid=#{pid}
     </select>
 
+    <update id="updateLikeCount">
+        update post set like_count = like_count + 1 where pid = #{pid}
+    </update>
+
     <update id="updateReplyCount">
         update post set reply_count = reply_count + 1 where pid = #{pid}
     </update>
@@ -70,7 +86,7 @@
     </update>
 
     <update id="updateReplyTime">
-        update post set reply_time = date_format(now(),'%Y-%c-%d %H:%i:%s')
+        update post set reply_time = date_format(now(),'%Y-%m-%d %H:%i:%s')
         where pid=#{pid}
     </update>
 

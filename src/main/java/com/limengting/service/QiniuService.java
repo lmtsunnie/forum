@@ -1,9 +1,6 @@
 package com.limengting.service;
 
 import com.limengting.common.Constant;
-import com.limengting.common.Util;
-import com.qiniu.http.Response;
-import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
 import org.springframework.stereotype.Service;
 

@@ -34,6 +34,10 @@
         where uid=#{uid}
     </update>
 
+    <update id="updateLikeCount">
+        update user set like_count = like_count+1 where uid=#{uid};
+    </update>
+
     <update id="updatePostCount">
         update user set post_count = post_count+1 where uid=#{uid};
     </update>

@@ -12,7 +12,7 @@ public class Util {
      * @return
      */
     public static String formatDate(Date date) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:MM:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return simpleDateFormat.format(date);
     }
 

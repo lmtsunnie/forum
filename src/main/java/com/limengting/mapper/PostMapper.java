@@ -14,9 +14,15 @@ public interface PostMapper {
 
     List<Post> listPostByTime(@Param("offset") int offset, @Param("limit") int limit);
 
+    List<Post> listPostByHot(@Param("offset") int offset, @Param("limit") int limit);
+
+    List<Post> listPostByQuality(@Param("offset") int offset, @Param("limit") int limit);
+
     int selectPostCount();
 
     Post getPostByPid(int pid);
+
+    void updateLikeCount(int pid);
 
     void updateReplyCount(int pid);
 

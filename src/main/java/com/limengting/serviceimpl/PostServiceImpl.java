@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -65,7 +66,7 @@ public class PostServiceImpl implements IPostService {
     }
 
     @Override
-    public PageBean<Post> listPostByTime(int curPage) {
+    public PageBean<Post> listPosts(int curPage, String order) {
         //每页记录数，从哪开始
         int limit = 8;
         int offset = (curPage - 1) * limit;
@@ -79,8 +80,15 @@ public class PostServiceImpl implements IPostService {
         } else {
             allPage = allCount / limit + 1;
         }
+        List<Post> postList = new ArrayList<>();
         //分页得到数据列表
-        List<Post> postList = postMapper.listPostByTime(offset, limit);
+        if (order.equals("Time")) {
+            postList = postMapper.listPostByTime(offset, limit);
+        } else if (order.equals("Hot")) {
+            postList = postMapper.listPostByHot(offset, limit);
+        } else if (order.equals("Quality")) {
+            postList = postMapper.listPostByQuality(offset, limit);
+        }
         Jedis jedis = jedisPool.getResource();
         for (Post post : postList) {
             post.setLikeCount((int) (long) jedis.scard(post.getPid() + ":like"));
@@ -117,8 +125,10 @@ public class PostServiceImpl implements IPostService {
         Jedis jedis = jedisPool.getResource();
         //pid被sessionUid点赞
         jedis.sadd(pid + ":like", String.valueOf(sessionUid));
+        postMapper.updateLikeCount(pid);
         //增加用户获赞数
         jedis.hincrBy("vote", sessionUid + "", 1);
+        userMapper.updateLikeCount(sessionUid);
 
         //插入一条点赞消息
         taskExecutor.execute(new MessageTask(messageMapper, userMapper, postMapper, replyMapper, pid, 0, sessionUid, Constant.OPERATION_CLICK_LIKE));

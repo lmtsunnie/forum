@@ -27,7 +27,7 @@ public interface IPostService {
      * @param curPage
      * @return
      */
-    PageBean<Post> listPostByTime(int curPage);
+    PageBean<Post> listPosts(int curPage, String order);
 
     /**
      *
