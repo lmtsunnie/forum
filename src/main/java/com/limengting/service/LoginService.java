@@ -1,10 +1,10 @@
 package com.limengting.service;
 
 import com.limengting.async.MailTask;
+import com.limengting.common.Constant;
+import com.limengting.common.Util;
 import com.limengting.mapper.UserMapper;
 import com.limengting.model.User;
-import com.limengting.util.MyConstant;
-import com.limengting.util.MyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -58,11 +58,11 @@ public class LoginService {
 
         //构造user，设置未激活
         user.setActived(0);
-        String activateCode = MyUtil.createActivateCode();
+        String activateCode = Util.createActivateCode();
         user.setActivateCode(activateCode);
-        user.setJoinTime(MyUtil.formatDate(new Date()));
+        user.setJoinTime(Util.formatDate(new Date()));
         user.setUsername("DF"+new Random().nextInt(10000)+"号");
-        user.setHeadUrl(MyConstant.QINIU_IMAGE_URL +"head.jpg");
+        user.setHeadUrl(Constant.QINIU_IMAGE_URL +"head.jpg");
 
         //发送邮件
         taskExecutor.execute(new MailTask(activateCode,user.getEmail(),javaMailSender,1));

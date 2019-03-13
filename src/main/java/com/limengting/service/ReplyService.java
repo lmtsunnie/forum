@@ -9,7 +9,7 @@ import com.limengting.model.Comment;
 import com.limengting.model.Post;
 import com.limengting.model.Reply;
 import com.limengting.model.User;
-import com.limengting.util.MyConstant;
+import com.limengting.common.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.stereotype.Service;
@@ -51,7 +51,7 @@ public class ReplyService {
         //更新最后回复时间
         postMapper.updateReplyTime(pid);
         //插入一条回复消息
-        taskExecutor.execute(new MessageTask(messageMapper,userMapper,postMapper,replyMapper,pid,0,sessionUid, MyConstant.OPERATION_REPLY));
+        taskExecutor.execute(new MessageTask(messageMapper,userMapper,postMapper,replyMapper,pid,0,sessionUid, Constant.OPERATION_REPLY));
 
     }
 
@@ -69,7 +69,7 @@ public class ReplyService {
         //更新最后回复时间
         postMapper.updateReplyTime(pid);
         //插入一条评论消息
-        taskExecutor.execute(new MessageTask(messageMapper,userMapper,postMapper,replyMapper,pid,rid,sessionUid, MyConstant.OPERATION_COMMENT));
+        taskExecutor.execute(new MessageTask(messageMapper,userMapper,postMapper,replyMapper,pid,rid,sessionUid, Constant.OPERATION_COMMENT));
 
     }
 

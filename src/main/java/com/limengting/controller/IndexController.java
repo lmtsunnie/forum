@@ -5,7 +5,7 @@ import com.limengting.model.Post;
 import com.limengting.model.User;
 import com.limengting.service.PostService;
 import com.limengting.service.UserService;
-import com.limengting.util.MyConstant;
+import com.limengting.common.Constant;
 import com.limengting.service.QiniuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -85,7 +85,7 @@ public class IndexController {
         qiniuService.upload(myFileName.getBytes(), remoteFileName);
 
         // 返回图片的URL地址
-        return MyConstant.QINIU_IMAGE_URL + remoteFileName;
+        return Constant.QINIU_IMAGE_URL + remoteFileName;
     }
 
 }

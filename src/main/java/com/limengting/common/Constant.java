@@ -1,10 +1,10 @@
 package com.limengting.common;
 
 public class Constant {
-    public static final String QINIU_IMAGE_URL = "http://qiniu.limengting.site/";
+    public static final String QINIU_IMAGE_URL = "http://qiniu.sunnie.xyz/";
     public static final String QINIU_ACCESS_KEY = "4Uk12cIO6mqC3QR0DapG349IFjP5bA_bMwIl0mcj";
     public static final String QINIU_SECRET_KEY = "6-R9_xaEnpkR34WZf8HTTsKCJ2o8cnUk1ZJZYlnO";
-    public static final String QINIU_BUCKET_NAME = "photos";
+    public static final String QINIU_BUCKET_NAME = "bithelper";
 
     //发送邮件的邮箱，要与application.properties中的一致
     public static final String MAIL_FROM = "lmtsunnie@sina.com";
