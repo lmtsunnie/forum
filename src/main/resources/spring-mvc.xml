@@ -49,6 +49,8 @@
                         <value>/verify.do</value>
 			            <value>/listImage.do</value>
                         <value>/post.do</value>
+                        <value>/postByHot.do</value>
+                        <value>/postByQuality.do</value>
                         <value>/toOnePost.do</value>
                         <value>/listTopic.do</value>
                         <value>/listPostByTime.do</value>
