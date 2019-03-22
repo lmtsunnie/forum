@@ -34,27 +34,4 @@ public class User {
     public User(Integer uid) {
         this.uid = uid;
     }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "uid=" + uid +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", actived=" + actived +
-                ", activateCode='" + activateCode + '\'' +
-                ", joinTime='" + joinTime + '\'' +
-                ", username='" + username + '\'' +
-                ", description='" + description + '\'' +
-                ", headUrl='" + headUrl + '\'' +
-                ", position='" + position + '\'' +
-                ", school='" + school + '\'' +
-                ", job='" + job + '\'' +
-                ", likeCount=" + likeCount +
-                ", postCount=" + postCount +
-                ", scanCount=" + scanCount +
-                ", followCount=" + followCount +
-                ", followerCount=" + followerCount +
-                '}';
-    }
 }

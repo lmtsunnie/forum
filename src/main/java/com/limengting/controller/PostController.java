@@ -46,9 +46,9 @@ public class PostController {
         //列出帖子
         PageBean<Post> pageBean = postService.listPosts(1, "Time");
         //列出用户
-        List<User> userList = userService.listUserByTime();
+        List<User> userList = userService.listUserByJoinTime();
         //列出活跃用户
-        List<User> hotUserList = userService.listUserByHot();
+        List<User> hotUserList = userService.listUserByPostCount();
         //向模型中添加数据
         model.addAttribute("pageBean", pageBean);
         model.addAttribute("userList", userList);
@@ -72,9 +72,9 @@ public class PostController {
         //列出帖子
         PageBean<Post> pageBean = postService.listPosts(1, "Hot");
         //列出用户
-        List<User> userList = userService.listUserByTime();
+        List<User> userList = userService.listUserByJoinTime();
         //列出活跃用户
-        List<User> hotUserList = userService.listUserByHot();
+        List<User> hotUserList = userService.listUserByPostCount();
         //向模型中添加数据
         model.addAttribute("pageBean", pageBean);
         model.addAttribute("userList", userList);
@@ -96,9 +96,9 @@ public class PostController {
         //列出帖子
         PageBean<Post> pageBean = postService.listPosts(1, "Quality");
         //列出用户
-        List<User> userList = userService.listUserByTime();
+        List<User> userList = userService.listUserByJoinTime();
         //列出活跃用户
-        List<User> hotUserList = userService.listUserByHot();
+        List<User> hotUserList = userService.listUserByPostCount();
         //向模型中添加数据
         model.addAttribute("pageBean", pageBean);
         model.addAttribute("userList", userList);
@@ -142,8 +142,8 @@ public class PostController {
     @RequestMapping("/listPostByTime.do")
     public String listPostByTime(int curPage, Model model) {
         PageBean<Post> pageBean = postService.listPosts(curPage, "Time");
-        List<User> userList = userService.listUserByTime();
-        List<User> hotUserList = userService.listUserByHot();
+        List<User> userList = userService.listUserByJoinTime();
+        List<User> hotUserList = userService.listUserByPostCount();
         model.addAttribute("pageBean", pageBean);
         model.addAttribute("userList", userList);
         model.addAttribute("hotUserList", hotUserList);

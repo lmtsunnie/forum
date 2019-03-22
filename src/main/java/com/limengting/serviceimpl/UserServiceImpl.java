@@ -84,12 +84,12 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public List<User> listUserByTime() {
+    public List<User> listUserByJoinTime() {
         return userMapper.listUserByJoinTime();
     }
 
     @Override
-    public List<User> listUserByHot() {
+    public List<User> listUserByPostCount() {
         return userMapper.listUserByPostCount();
     }
 

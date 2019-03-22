@@ -65,6 +65,7 @@ public class PostServiceImpl implements IPostService {
         return post.getPid();
     }
 
+    //按时间列出帖子
     @Override
     public PageBean<Post> listPosts(int curPage, String order) {
         //每页记录数，从哪开始
@@ -81,13 +82,13 @@ public class PostServiceImpl implements IPostService {
             allPage = allCount / limit + 1;
         }
         List<Post> postList = new ArrayList<>();
-        //分页得到数据列表
-        if (order.equals("Time")) {
+        if ("Time".equals(order)) {
+            //分页得到数据列表
             postList = postMapper.listPostByTime(offset, limit);
-        } else if (order.equals("Hot")) {
-            postList = postMapper.listPostByHot(offset, limit);
-        } else if (order.equals("Quality")) {
+        } else if ("Quality".equals(order)) {
             postList = postMapper.listPostByQuality(offset, limit);
+        } else if ("Hot".equals(order)) {
+            postList = postMapper.listPostByHot(offset, limit);
         }
         Jedis jedis = jedisPool.getResource();
         for (Post post : postList) {

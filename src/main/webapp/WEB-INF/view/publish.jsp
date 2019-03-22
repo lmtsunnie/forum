@@ -80,9 +80,9 @@
         var topics = $(".topics");
         var tid = $("#tid");
         topics.click(function () {
-            for (var i = 0; i < topics.length; i++) {
-                $(topics[i]).css("background-color", "#fff");
-            }
+            //for (var i = 0; i < topics.length; i++) {
+            //  $(topics[i]).css("background-color", "#fff");
+            //}
             $(this).css("background-color", "#1abc9c");
             tid.val(this.title);
         });

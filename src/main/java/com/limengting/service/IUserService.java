@@ -37,12 +37,12 @@ public interface IUserService {
     /**
      * @return
      */
-    List<User> listUserByTime();
+    List<User> listUserByJoinTime();
 
     /**
      * @return
      */
-    List<User> listUserByHot();
+    List<User> listUserByPostCount();
 
     /**
      * 更新头像

@@ -3,10 +3,8 @@ package com.limengting.controller;
 import com.limengting.model.PageBean;
 import com.limengting.model.Post;
 import com.limengting.model.User;
-import com.limengting.service.PostService;
-import com.limengting.service.UserService;
+import com.limengting.service.*;
 import com.limengting.common.Constant;
-import com.limengting.service.QiniuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,13 +24,13 @@ import java.util.UUID;
 public class IndexController {
 
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     @Autowired
-    private PostService postService;
+    private IPostService postService;
 
     @Autowired
-    private QiniuService qiniuService;
+    private IQiniuService qiniuService;
 
     /**
      * 去主页
@@ -46,7 +44,7 @@ public class IndexController {
         //记录访问信息
         userService.record(request.getRequestURL(),request.getContextPath(),request.getRemoteAddr());
         //列出帖子
-        PageBean<Post> pageBean = postService.listPostByTime(1);
+        PageBean<Post> pageBean = postService.listPosts(1, "Time");
         //列出用户
         List<User> userList = userService.listUserByJoinTime();
         //列出活跃用户

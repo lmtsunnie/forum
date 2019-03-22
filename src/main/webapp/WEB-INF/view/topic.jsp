@@ -65,8 +65,8 @@
 				<div class="clearfix"><div class="hot-user-title"><span></span>&nbsp;推荐网站</div></div>
 				<ul class="hot-user-list">
 					<li class="clearfix">
-						<a href="https://bit.edu.cn/" class="hot-user-image"><img src="http://qiniu.limengting.site/logo2.jpg"></a>
-						<a href="https://bit.edu.cn/" class="hot-user-name">北理工官网</a>
+						<a href="http://www.bit.edu.cn/" class="hot-user-image"><img src="http://qiniu.limengting.site/logo2.jpg"></a>
+						<a href="http://www.bit.edu.cn/" class="hot-user-name">北理工官网</a>
 					</li>
 					<li class="clearfix">
 						<a href="https://rek.rek.me/bitren/" class="hot-user-image"><img src="http://qiniu.limengting.site/nav1.png"></a>
