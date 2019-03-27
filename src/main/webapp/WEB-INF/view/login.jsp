@@ -107,7 +107,7 @@
         //校验邮箱
         $("#email").blur(function () {
             var value = $(this).val();
-            if (!/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(value)) {
+            if (!/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(value)) {
                 $("#error-message").text("邮箱格式错误");
             } else {
                 $("#error-message").text("");

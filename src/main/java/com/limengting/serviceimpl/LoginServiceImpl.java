@@ -29,7 +29,7 @@ public class LoginServiceImpl implements ILoginService {
 
     @Override
     public String register(User user, String repassword) {
-        Pattern pattern = Pattern.compile("^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\\.[a-zA-Z0-9_-]{2,3}){1,2})$");
+        Pattern pattern = Pattern.compile("^([A-Za-z0-9_\\-\\.])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]{2,4})$");
         Matcher matcher = pattern.matcher(user.getEmail());
         // 校验邮箱格式
         if (!matcher.matches()) {
